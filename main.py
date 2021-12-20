@@ -17,12 +17,9 @@ while right_state <= 50:
     states_file = pandas.read_csv("50_states.csv")
     us_states = states_file.state.to_list()
     if answer_state == "Exit":
-        missing_state = []
-        for state in us_states:
-            if state not in already_taken:
-                missing_state.append(state)
-                new_data = pandas.DataFrame(missing_state)
-                new_data.to_csv("missing states.csv")
+        missing_state = [state for state in us_states if state not in us_states]
+        new_data = pandas.DataFrame(missing_state)
+        new_data.to_csv("missing states.csv")
         break
 
     for state in us_states:
